@@ -4,8 +4,8 @@ import pymongo
 app = Flask(__name__)
 app.secret_key = "3112"  
 
-myclient = pymongo.MongoClient("mongodb+srv://manot6114:vOqJN4bEV7KEMxq7@project1.z0gbb.mongodb.net/?retryWrites=true&w=majority&appName=project1")
-mydb = myclient["link"]
+myclient = pymongo.MongoClient("mongodb+srv://usernane:passwordroject1.z0gbb.mongodb.net/?retryWrites=true&w=majority&appName=project1")
+mydb = myclient["databaaename"]
 
 @app.route('/')
 def index():
