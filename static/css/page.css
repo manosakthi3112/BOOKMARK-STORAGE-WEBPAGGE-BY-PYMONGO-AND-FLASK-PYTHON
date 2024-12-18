@@ -1,0 +1,94 @@
+
+html, body {
+    font-family: "Atma", system-ui;
+    font-weight: 700;
+    font-size: 110%;
+    font-style: normal;
+    color: black;
+    background-color: black;
+    height: 100%;
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+}
+
+
+form {
+    background-color: gray;
+    padding: 45px;
+    border-style: double;
+    border-color: whitesmoke;
+    border-width: 5px;
+    width: 50%;
+    height: auto; 
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.search {
+    width: 100%;
+    padding: 5px;
+    margin: 10px 0;
+    border: solid;
+    border-width: 3px;
+    box-sizing: border-box;
+}
+
+
+#add-button {
+    width: 50%;
+    height: auto;
+    position: relative;
+    border: solid;
+    border-width: 3px;
+    border-color: black;
+    font-size: 120%;
+    top: 10px;
+    padding: 15px;
+}
+
+@media (max-width: 600px) {
+    form {
+        width: 90%; 
+        padding: 30px; 
+    }
+    #add-button {
+        width: 80%;
+        font-size: 100%; 
+    }
+    .search {
+        font-size: 100%;
+    }
+}
+
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    form {
+        width: 70%; 
+        padding: 40px;
+    }
+    #add-button {
+        width: 60%;
+        font-size: 110%; 
+    }
+    .search {
+        font-size: 110%;
+    }
+}
+
+@media (min-width: 1025px) {
+    form {
+        width: 50%;
+    }
+    #add-button {
+        width: 50%;
+        font-size: 120%;
+    }
+}

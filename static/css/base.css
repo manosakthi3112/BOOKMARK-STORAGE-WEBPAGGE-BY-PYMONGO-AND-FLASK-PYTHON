@@ -1,0 +1,181 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Atma", system-ui;
+    font-weight: 500;
+    font-size: 150%;
+    font-style: normal;
+    color: black;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+}
+html {
+    scroll-behavior: smooth;
+}
+.container {
+    overflow-y: auto; 
+    scrollbar-width: none;
+    -ms-overflow-style: none; 
+    background: powderblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 15px;
+    margin-top: 2%;
+    border: 5px double whitesmoke;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 1200px;
+    height: auto; 
+    box-sizing: border-box;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+.container::-webkit-scrollbar {
+    display: none; 
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+    max-height: 70vh; 
+    overflow-y: auto; 
+    scrollbar-width: none; 
+    -ms-overflow-style: none; 
+}
+.content::-webkit-scrollbar {
+    display: none; 
+}
+
+.row {
+    background-color: white;
+    border: 5px double #ccc;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    gap: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    margin-left: 5%;
+    width: 90%;
+    flex-shrink: 0; 
+    min-height: 100px; 
+}
+.col {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.col a {
+    color: black;
+    text-decoration: none;
+    font-size: 150%;
+    padding-left: 30px;
+    word-break: break-word;
+}
+.col a.name {
+    font-weight: 700;
+    font-size: 150%;
+}
+.btn-copy {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    top: 2px;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    right: 10px;
+}
+.delete-1{
+    position: absolute;
+    left: 92%;
+    top: 3px;
+    padding: 5px 10px;
+}
+.btn-copy:hover {
+    background-color: #45a049;
+}
+form {
+    margin-top: 20px;
+    text-align: center;
+}
+h3.data {
+    text-align: center;
+    font-family: "Atma", system-ui;
+}
+#add-button {
+    width: 40%;
+    height: 120%;
+    border: solid;
+    border-width: 2px;
+    color: black;
+    font-size: 25px;
+    border-radius: 10px;
+}
+
+
+@media (max-width: 768px) {
+    body {
+        font-size: 120%; 
+        flex-direction: column;
+        padding: 10px;
+    }
+    .container {
+        width: 95%; 
+        padding: 10px;
+    }
+    .content {
+        max-height: 50vh; 
+    }
+    .row {
+        margin-left: 0; 
+        width: 100%; 
+    }
+    #add-button {
+        width: 80%; 
+        font-size: 20px;
+    }
+    .col a {
+        font-size: 120%; 
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    body {
+        font-size: 130%; 
+    }
+    .container {
+        width: 85%;
+    }
+    .content {
+        max-height: 60vh;
+    }
+    #add-button {
+        width: 60%;
+        font-size: 22px;
+    }
+}
+
+
+@media (min-width: 1025px) {
+    body {
+        font-size: 150%; 
+    }
+    .container {
+        width: 80%;
+    }
+    .content {
+        max-height: 70vh;
+    }
+    #add-button {
+        width: 40%;
+        font-size: 25px;
+    }
+}

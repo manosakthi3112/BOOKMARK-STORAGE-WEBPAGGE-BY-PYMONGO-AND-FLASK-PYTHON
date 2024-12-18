@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" type="image/x-icon">
+
+        <title>BOOKMARK STORAGE </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="content" id="content">
+                {% if data %}
+                    {% for i in data %}
+                        <div class="row">
+                            <div class="col">
+                                <a href="{{ i['link'] }}" class="name" target="_blank">{{ i['link_name'] }}</a>
+                            </div>
+                            <div class="col">
+                                <a href="{{ i['link'] }}" class="link" target="_blank">{{ i['link'] }}</a>
+                                <form action="/delete" method="post" class="delete-1">
+                                    <input type="hidden" name="name" value="{{ i['link_name'] }}">
+                                    <input type="image" class="delete" src="./static/img/bin.png" alt="Submit" alt="Submit" width="30" height="30">
+                                </form>
+                                <button class="btn-copy" onclick="copyText('{{ i['link'] }}')">Copy Text</button>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <h3 class="data">NO DATA FOUND ADD DATA</h3>
+                {% endif %}
+            </div>
+            <form  action="/add" method="post">
+                <input type="submit" id="add-button" value="ADD" class="btn btn-primary">
+            </form>
+        </div>
+        <script>
+            function copyText(text) {
+                navigator.clipboard.writeText(text).then(function () {
+                    alert("Copied to clipboard: " + text);
+                });
+            }
+        </script>
+    </body>
+</html>
