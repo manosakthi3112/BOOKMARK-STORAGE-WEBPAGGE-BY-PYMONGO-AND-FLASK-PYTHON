@@ -75,4 +75,4 @@ def delete():
         return render_template('index.html', error="unexpected error ")
 
 if __name__ == "__main__":
-    app.run(host="2409:408d:3cbc:4b73:def2:d618:a19b:d6f9",debug=True, threaded=False)
+    app.run(host="",debug=True, threaded=False)
