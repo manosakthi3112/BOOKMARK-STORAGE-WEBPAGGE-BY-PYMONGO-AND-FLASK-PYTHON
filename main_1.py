@@ -1,11 +1,17 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+from urllib.parse import quote_plus
 import pymongo
 
 app = Flask(__name__)
 app.secret_key = "3112"  
 
-myclient = pymongo.MongoClient("mongodb+srv://usernane:passwordroject1.z0gbb.mongodb.net/?retryWrites=true&w=majority&appName=project1")
-mydb = myclient["databaaename"]
+username = "manot6114"
+password = "vOqJN4bEV7KEMxq7"
+encoded_username = quote_plus(username)
+encoded_password = quote_plus(password)
+
+myclient = pymongo.MongoClient("mongodb+srv://{encoded_username}:{encoded_password}@project1.z0gbb.mongodb.net/?retryWrites=true&w=majority&appName=project1")
+mydb = myclient["link"]
 
 @app.route('/')
 def index():
