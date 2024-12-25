@@ -81,5 +81,4 @@ def delete():
         return render_template('index.html', error="unexpected error ")
 
 if __name__ == "__main__":
-    port=int(os.environ.get("PORT",4000))
-    app.run(host="0.0.0.0",debug=True, threaded=False,port=port)
+    app.run(host="0.0.0.0",debug=True, threaded=False)
