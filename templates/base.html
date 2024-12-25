@@ -24,10 +24,10 @@
                     {% for i in data %}
                         <div class="row">
                             <div class="col">
-                                <a href="{{ i['link'] }}" class="name" target="_blank">{{ i['link_name'] }}</a>
+                                <a href="{{ 'http://' + i['link'] if not i['link'].startswith('http') else i['link'] }}" class="name" target="_blank">{{ i['link_name'] }}</a>
                             </div>
                             <div class="col">
-                                <a href="{{ i['link'] }}" class="link" target="_blank">{{ i['link'] }}</a>
+                                <a href="{{ 'http://' + i['link'] if not i['link'].startswith('http') else i['link'] }}" class="link" target="_blank">{{ i['link'] }}</a>
                                 <form action="/delete" method="post" class="delete-1">
                                     <input type="hidden" name="name" value="{{ i['link_name'] }}">
                                     <input type="image" class="delete" src="./static/img/bin.png" alt="Submit" alt="Submit" width="30" height="30">
