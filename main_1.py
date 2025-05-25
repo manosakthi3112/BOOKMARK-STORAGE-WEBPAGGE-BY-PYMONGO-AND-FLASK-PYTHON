@@ -10,7 +10,7 @@ password = "vOqJN4bEV7KEMxq7"
 encoded_username = quote_plus(username)
 encoded_password = quote_plus(password)
 
-myclient = pymongo.MongoClient("mongodb+srv://{encoded_username}:{encoded_password}@project1.z0gbb.mongodb.net/?retryWrites=true&w=majority&appName=project1")
+myclient = pymongo.MongoClient(f"mongodb+srv://manot6114:{encoded_password}@project1.z0gbb.mongodb.net/?retryWrites=true&w=majority&appName=project1")
 mydb = myclient["link"]
 
 @app.route('/')
