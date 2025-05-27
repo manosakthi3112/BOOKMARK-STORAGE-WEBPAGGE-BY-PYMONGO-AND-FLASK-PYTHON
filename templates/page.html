@@ -1,31 +1,76 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" type="image/x-icon">
+<head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> <!-- If not used, remove -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fira Code for a dev-friendly feel (monospaced for inputs, proportional for text) -->
+    <!-- Or JetBrains Mono / Source Code Pro -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" type="image/x-icon">
 
-        <title>BOOKMARK STORAGE </title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/page.css') }}">
-    </head>
-    <body>
-        <div class="container">
-            <form  action="/insert" method="post">
-                <label for="fname" class="yt">LINK NAME</label><br>
-                <input type="text" id="fname" name="link_n" class="search"><br>
-                <label for="link" class="yt">LINK</label><br>
-                <input type="text" id="link" name="link" class="search"><br>
-                <input type="submit" id="add-button" value="INSERT" class="btn btn-primary">
+    <title>New Entry | Bookmark CMD</title> <!-- More "command-line" feel title -->
+    <meta name="description" content="Log a new bookmark into the system.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/page.css') }}">
+</head>
+<body class="dev-theme-page add-bookmark-page-v4">
+
+    <div class="dev-form-container-v4">
+        <header class="dev-form-header-v4">
+            <div class="header-line-art"></div> <!-- Decorative element -->
+            <h1><span class="prompt-char">></span> Add New Bookmark</h1>
+            <p class="subtitle-v4">// Commit a new URL to your collection</p>
+        </header>
+
+        <main class="dev-form-main-v4">
+            <form action="/insert" method="post">
+                <div class="form-row-v4">
+                    <div class="form-group-v4">
+                        <label for="link_name_v4" class="form-label-v4">
+                            <span class="label-tag">NAME</span> Link Title
+                        </label>
+                        <input type="text" id="link_name_v4" name="link_n" class="form-input-v4" placeholder="my-project-docs" required>
+                    </div>
+                </div>
+
+                <div class="form-row-v4">
+                    <div class="form-group-v4">
+                        <label for="link_url_v4" class="form-label-v4">
+                            <span class="label-tag">URL</span> Web Address
+                        </label>
+                        <input type="url" id="link_url_v4" name="link" class="form-input-v4" placeholder="https://github.com/user/repo" required>
+                    </div>
+                </div>
+                
+                <!-- Optional: Tags Input (for a more advanced feel) -->
+                <!-- <div class="form-row-v4">
+                    <div class="form-group-v4">
+                        <label for="link_tags_v4" class="form-label-v4">
+                            <span class="label-tag">TAGS</span> Keywords (comma-separated)
+                        </label>
+                        <input type="text" id="link_tags_v4" name="tags" class="form-input-v4" placeholder="dev, javascript, tools">
+                    </div>
+                </div> -->
+
+                <div class="form-actions-v4">
+                    <button type="submit" class="submit-btn-dev-v4">
+                        <span class="btn-text">// Execute Add</span>
+                        <span class="btn-icon-dev">→</span>
+                    </button>
+                </div>
             </form>
-        </div>
-    </body>
+        </main>
+
+        <footer class="dev-form-footer-v4">
+            <a href="{{ url_for('index') }}" class="back-link-dev-v4">
+                <span class="icon-dev">←</span> // Back to List
+            </a>
+        </footer>
+    </div>
+
+</body>
 </html>
