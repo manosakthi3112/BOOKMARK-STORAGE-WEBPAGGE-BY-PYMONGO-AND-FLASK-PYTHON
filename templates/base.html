@@ -4,52 +4,145 @@
         <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+        <!-- Using Atma for headings, and a more readable font like Open Sans for body -->
+        <link href="https://fonts.googleapis.com/css2?family=Atma:wght@500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" type="image/x-icon">
 
-        <title>BOOKMARK STORAGE </title>
-        <meta name="description" content="">
+        <title>BOOKMARK STORAGE</title>
+        <meta name="description" content="A modern bookmark storage application.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- Bootstrap is still included as the CSS was designed to work with/override it -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+        
+        <!-- Your custom CSS files -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}"> <!-- If you have base styles -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/custom_styles.css') }}"> <!-- Main dark theme styles -->
     </head>
     <body>
-        <div class="container">
+        <div class="container main-container"> <!-- Bootstrap .container with custom .main-container for styling -->
+            <header class="page-header text-center">
+                <h1>BOOKMARK STORAGE</h1>
+            </header>
+
             <div class="content" id="content">
                 {% if data %}
                     {% for i in data %}
-                        <div class="row">
-                            <div class="col">
-                                <a href="{{ 'http://' + i['link'] if not i['link'].startswith('http') else i['link'] }}" class="name" target="_blank">{{ i['link_name'] }}</a>
+                        <div class="bookmark-card">
+                            <div class="bookmark-info">
+                                <a href="{{ 'http://' + i['link'] if not i['link'].startswith('http') else i['link'] }}" class="bookmark-name" target="_blank">{{ i['link_name'] }}</a>
+                                <a href="{{ 'http://' + i['link'] if not i['link'].startswith('http') else i['link'] }}" class="bookmark-url" target="_blank">{{ i['link'] }}</a>
                             </div>
-                            <div class="col">
-                                <a href="{{ 'http://' + i['link'] if not i['link'].startswith('http') else i['link'] }}" class="link" target="_blank">{{ i['link'] }}</a>
-                                <form action="/delete" method="post" class="delete-1">
+                            <div class="bookmark-actions">
+                                <form action="/delete" method="post" class="delete-form">
                                     <input type="hidden" name="name" value="{{ i['link_name'] }}">
-                                    <input type="image" class="delete" src="./static/img/bin.png" alt="Submit" alt="Submit" width="30" height="30">
+                                    <button type="submit" class="btn-delete" title="Delete Bookmark">
+                                        <!-- Using SVG for delete icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                            <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1h-אלעדZM8.5 4.5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0zM5 4.5a.5.5 0 0 0-.5.5v6a.5.5 0 1 0 1 0V5a.5.5 0 0 0-.5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                        </svg>
+                                    </button>
                                 </form>
-                                <button class="btn-copy" onclick="copyText('{{ i['link'] }}')">Copy Text</button>
+                                <button class="btn-copy" onclick="copyText('{{ 'http://' + i['link'] if not i['link'].startswith('http') else i['link'] }}', this)" title="Copy Link">
+    <span class="icon-container">
+        <svg class="copy-icon-default" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+          <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+        </svg>
+        <svg class="copy-icon-success" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16" style="display: none;"> <!-- Initially hidden -->
+            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+        </svg>
+    </span>
+    <span class="copy-text-span">Copy</span>
+</button>
                             </div>
                         </div>
                     {% endfor %}
                 {% else %}
-                    <h3 class="data">NO DATA FOUND ADD DATA</h3>
+                    <div class="no-data-container">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-emoji-frown" viewBox="0 0 16 16" style="margin-bottom: 15px;">
+                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                          <path d="M4.285 12.433a.5.5 0 0 0 .683-.183A3.498 3.498 0 0 1 8 10.5c1.295 0 2.426.703 3.032 1.75a.5.5 0 0 0 .866-.5A4.498 4.498 0 0 0 8 9.5a4.5 4.5 0 0 0-3.898 2.25.5.5 0 0 0 .183.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
+                        </svg>
+                        <h3 class="data-message">NO DATA FOUND</h3>
+                        <p>Why not add your first bookmark?</p>
+                    </div>
                 {% endif %}
             </div>
-            <form  action="/add" method="post">
-                <input type="submit" id="add-button" value="ADD" class="btn btn-primary">
-            </form>
+
+            <div class="add-button-container">
+                <form action="/add" method="post"> <!-- Assuming this form's ID is `add-form` if styled specifically, or just target #add-button -->
+                    <input type="submit" id="add-button" value="ADD NEW BOOKMARK" class="btn btn-primary btn-lg">
+                </form>
+            </div>
         </div>
+
+        <!-- jQuery and Bootstrap JS (if needed for Bootstrap components, not strictly for this styling) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
         <script>
-            function copyText(text) {
-                navigator.clipboard.writeText(text).then(function () {
-                    alert("Copied to clipboard: " + text);
-                });
+    function copyText(textToCopy, clickedButtonElement) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(textToCopy).then(function () {
+                if (clickedButtonElement) {
+                    const textSpan = clickedButtonElement.querySelector('.copy-text-span'); // Target specific span
+                    // const iconDefault = clickedButtonElement.querySelector('.copy-icon-default');
+                    // const iconSuccess = clickedButtonElement.querySelector('.copy-icon-success');
+
+                    clickedButtonElement.classList.add('copied'); // Add class for icon swap & text color
+
+                    if (textSpan) {
+                        const originalText = textSpan.textContent;
+                        textSpan.textContent = "Copied!";
+                        // iconDefault.style.display = 'none';
+                        // iconSuccess.style.display = 'inline-block';
+
+                        setTimeout(() => {
+                            textSpan.textContent = originalText;
+                            // iconDefault.style.display = 'inline-block';
+                            // iconSuccess.style.display = 'none';
+                            clickedButtonElement.classList.remove('copied');
+                        }, 2000); // Increased duration for "Copied!"
+                    } else {
+                         alert("Copied: " + textToCopy);
+                    }
+                } else {
+                     alert("Copied to clipboard: " + textToCopy);
+                }
+            }).catch(function(err) {
+                console.error("Could not copy text: ", err);
+                alert("Failed to copy text.");
+            });
+        } else {
+            // Fallback for older browsers (kept for completeness)
+            const textArea = document.createElement("textarea");
+            textArea.value = textToCopy;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-9999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                if (clickedButtonElement) { // Basic feedback for fallback
+                    const textSpan = clickedButtonElement.querySelector('.copy-text-span');
+                    if (textSpan) {
+                        const originalText = textSpan.textContent;
+                        textSpan.textContent = "Copied!";
+                        setTimeout(() => { textSpan.textContent = originalText; }, 1500);
+                    } else { alert("Copied (fallback)"); }
+                } else { alert("Copied to clipboard (fallback): " + textToCopy); }
+            } catch (err) {
+                console.error("Fallback: Oops, unable to copy", err);
+                alert("Failed to copy text (fallback).");
             }
-        </script>
+            document.body.removeChild(textArea);
+        }
+    }
+</script>
+   
     </body>
 </html>
