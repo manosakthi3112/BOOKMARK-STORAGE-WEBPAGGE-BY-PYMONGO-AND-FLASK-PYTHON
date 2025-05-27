@@ -1,111 +1,302 @@
+/* static/css/custom_style.css - V2 IMPRESSIVE LIGHT THEME FOR AUTH PAGE */
 
-.tot_search {
+:root {
+    /* Color Palette - Modern & Professional */
+    --color-primary: #3B71FE; /* Vibrant Blue */
+    --color-primary-dark: #2a52c1;
+    --color-primary-light: #e6efff; /* Very light blue for backgrounds/highlights */
+
+    --color-secondary: #6C757D; /* Muted Grey for secondary text */
+    --color-dark: #1A202C;      /* Deep Dark Grey/Almost Black for primary text */
+    --color-light-grey: #F7FAFC;/* Page background */
+    --color-border: #E2E8F0;    /* Soft border color */
+    --color-input-bg: #FFFFFF;
+
+    --color-success: #34D399;   /* Modern Green */
+    --color-success-bg: #F0FDF4;
+    --color-error: #F87171;     /* Modern Red */
+    --color-error-bg: #FEF2F2;
+
+    /* Typography */
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-brand: 'Atma', cursive; /* Optional for specific branding */
+
+    /* Spacing & Sizing */
+    --space-unit: 8px;
+    --input-height: 48px;
+    --button-height: 48px;
+
+    /* Borders & Shadows */
+    --border-radius-sm: 4px;
+    --border-radius-md: 6px;
+    --border-radius-lg: 8px;
+    --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+    --shadow-sm: 0 2px 4px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+    --shadow-md: 0 4px 8px -2px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-focus: 0 0 0 3px rgba(59, 113, 254, 0.3); /* For focus rings */
+
+    /* Transitions */
+    --transition-fast: all 0.15s ease-in-out;
+    --transition-normal: all 0.25s ease-in-out;
+}
+
+/* --- GLOBAL STYLES --- */
+body.auth-page-body-v2 {
+    font-family: var(--font-main);
+    background-color: var(--color-light-grey);
+    color: var(--color-dark);
+    line-height: 1.6;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: calc(var(--space-unit) * 3); /* 24px */
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.auth-container-v2 {
     width: 100%;
-    height: auto;
-    background: #c0a7d5;
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    padding: 50px; 
-    border-radius: 15px;
+    max-width: 420px;
     text-align: center;
-    border-style: double;
-    border-color: whitesmoke;
-    border-width: 7px;
 }
-body {
-    font-family: "Atma", system-ui;
+
+/* --- BRAND HEADER --- */
+.auth-brand-header-v2 {
+    margin-bottom: calc(var(--space-unit) * 5); /* 40px */
+}
+
+.auth-brand-header-v2 .auth-logo-mark-v2 {
+    height: calc(var(--space-unit) * 6); /* 48px */
+    margin-bottom: calc(var(--space-unit) * 2);
+}
+
+.auth-brand-header-v2 h1 {
+    font-family: var(--font-main); /* Or var(--font-brand) */
+    font-size: 2em; /* 32px approx */
     font-weight: 700;
-    font-size: 200%;
-    font-style: normal;
-    color: black;
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    color: var(--color-dark);
+    margin: 0 0 calc(var(--space-unit) * 1) 0;
+}
+
+.auth-brand-header-v2 p {
+    font-size: 1em; /* 16px */
+    color: var(--color-secondary);
     margin: 0;
 }
-form {
-    width: 100%; 
-    display: grid;
-    font-size: 1.8rem;
-    padding: 15px;
-    grid-row-gap: 10px; 
+
+/* --- FORM CARD --- */
+.auth-form-card-v2 {
+    background-color: #ffffff;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-md);
+    padding: calc(var(--space-unit) * 4) calc(var(--space-unit) * 4); /* 32px */
+    text-align: left;
+    margin-bottom: calc(var(--space-unit) * 3); /* 24px */
 }
-.submit {
-    width: 100%; 
-    padding: 10px;
-    font-size: 1.5rem;
-    background-color: #6200ea;
-    color: white;
+
+/* --- FORM GROUP & LABELS --- */
+.form-group-v2 {
+    margin-bottom: calc(var(--space-unit) * 2.5); /* 20px */
+}
+
+.form-label-v2 {
+    display: block;
+    font-size: 0.875em; /* 14px */
+    font-weight: 600;
+    color: var(--color-dark);
+    margin-bottom: var(--space-unit); /* 8px */
+}
+
+/* --- INPUT WRAPPER & INPUT --- */
+.input-wrapper-v2 {
+    position: relative;
+}
+
+/* Example for icon styling if you add one */
+/* .input-wrapper-v2 .input-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-secondary);
+    font-size: 1.1em;
+} */
+
+.form-input-v2 {
+    width: 100%;
+    height: var(--input-height);
+    padding: 0 calc(var(--space-unit) * 2); /* 16px horizontal padding */
+    /* padding-left: 40px; /* If using an icon */
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-md);
+    font-family: var(--font-main);
+    font-size: 1em; /* 16px */
+    color: var(--color-dark);
+    background-color: var(--color-input-bg);
+    box-sizing: border-box;
+    transition: var(--transition-normal);
+    appearance: none; /* Remove default styling on some browsers */
+}
+
+.form-input-v2::placeholder {
+    color: var(--color-secondary);
+    opacity: 0.7;
+}
+
+.form-input-v2:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-focus);
+}
+
+/* --- SUBMIT BUTTON --- */
+.submit-btn-v2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: var(--button-height);
+    background-image: linear-gradient(to right, var(--color-primary) 0%, #528eff 100%); /* Subtle gradient */
+    color: #ffffff;
     border: none;
-    border-radius: 5px;
+    padding: 0 calc(var(--space-unit) * 3); /* 24px */
+    font-size: 1em; /* 16px */
+    font-family: var(--font-main);
+    font-weight: 600;
+    border-radius: var(--border-radius-md);
     cursor: pointer;
-}
-.submit:hover {
-    background-color: #3700b3;
-}
-.search {
-    width: 170%; 
-    padding: 10px;
-    padding-right: 80px;
-    border: solid 2px blue;
-    border-radius: 5px;
-    box-sizing: border-box; 
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-normal);
+    text-transform: none;
 }
 
+.submit-btn-v2:hover {
+    background-image: linear-gradient(to right, var(--color-primary-dark) 0%, var(--color-primary) 100%);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.submit-btn-v2:active {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-xs);
+}
+
+.submit-btn-v2:focus {
+    outline: none;
+    box-shadow: var(--shadow-focus), var(--shadow-sm); /* Combine focus ring with existing shadow */
+}
+
+/* --- AUTH MESSAGE BOX --- */
+.auth-message-box-v2 {
+    margin-top: calc(var(--space-unit) * 3); /* 24px */
+    padding: calc(var(--space-unit) * 1.5) calc(var(--space-unit) * 2); /* 12px 16px */
+    border-radius: var(--border-radius-md);
+    font-size: 0.9375em; /* 15px */
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    border: 1px solid transparent;
+}
+/* Optional icon for message box */
+/* .auth-message-box-v2 .message-icon { margin-right: var(--space-unit); } */
+
+.auth-message-box-v2.success {
+    background-color: var(--color-success-bg);
+    color: var(--color-success);
+    border-color: var(--color-success); /* Or a lighter border: #A7F3D0 */
+}
+/* .auth-message-box-v2.success .message-icon { color: var(--color-success); } */
+
+.auth-message-box-v2.error {
+    background-color: var(--color-error-bg);
+    color: var(--color-error);
+    border-color: var(--color-error); /* Or a lighter border: #FECACA */
+}
+/* .auth-message-box-v2.error .message-icon { color: var(--color-error); } */
 
 
+/* --- FOOTER --- */
+.auth-footer-v2 {
+    font-size: 0.875em; /* 14px */
+    color: var(--color-secondary);
+}
 
-@media (max-width: 768px) {
-    body {
-        font-size: 120%; 
-        flex-direction: column;
-        padding: 10px;
+.auth-footer-v2 a {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.auth-footer-v2 a:hover {
+    text-decoration: underline;
+}
+
+/* --- RESPONSIVENESS --- */
+@media (max-width: 480px) {
+    .auth-brand-header-v2 h1 {
+        font-size: 1.75em; /* Slightly smaller */
     }
-    .tot_search {
-        width: 100%; 
-        padding: 10px;
+    .auth-form-card-v2 {
+        padding: calc(var(--space-unit) * 3); /* 24px */
     }
-    .submit {
-        width: 40%; 
-    }
-    .search {
-        width: 100%; 
+    .form-input-v2, .submit-btn-v2 {
+        height: calc(var(--input-height) - var(--space-unit) / 2); /* 44px */
+        font-size: 0.95em;
     }
 }
 
 
-@media (min-width: 769px) and (max-width: 1024px) {
-    body {
-        font-size: 150%;
-    }
-    .tot_search {
-        width: 90%;
-    }
-    .submit {
-        width: 70%;
-    }
-    .search {
-        width: 100%;
-    }
-}
+/* --- STYLES FOR YOUR BOOKMARK LISTING PAGE (base.html) --- */
+/*
+   To make your *other* pages (like base.html) also feel "impressive" and cohesive,
+   they should adopt similar principles:
+   1. Use the CSS variables defined in :root (colors, fonts, spacing, shadows).
+   2. Employ modern typography (e.g., 'Inter').
+   3. Use consistent spacing and border-radius.
+   4. Implement subtle shadows and transitions.
 
-
-@media (min-width: 1025px) {
-    body {
-        font-size: 200%;
-    }
-    .tot_search {
-        width: 60%;
-    }
-    .submit {
-        width: 45%;
-    }
-    .search {
-        width: 100%;
-    }
+   Example for .bookmark-card if you were to theme it similarly:
+*/
+/*
+.bookmark-card {
+    background-color: #ffffff;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+    padding: calc(var(--space-unit) * 2.5) calc(var(--space-unit) * 3);
+    margin-bottom: calc(var(--space-unit) * 2);
+    transition: var(--transition-normal);
 }
+.bookmark-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+.bookmark-name {
+    font-family: var(--font-main);
+    font-weight: 600;
+    color: var(--color-dark);
+    font-size: 1.1em;
+}
+.bookmark-url {
+    font-family: var(--font-main);
+    color: var(--color-secondary);
+    font-size: 0.9em;
+}
+#add-button {
+    height: var(--button-height);
+    background-color: var(--color-success); (Or your primary color for add)
+    color: #ffffff;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-normal);
+}
+#add-button:hover {
+    background-color: #25a075; (Darker success)
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+*/
