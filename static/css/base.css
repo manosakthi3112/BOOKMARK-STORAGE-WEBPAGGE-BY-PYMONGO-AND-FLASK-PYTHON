@@ -1,181 +1,300 @@
+/* static/css/custom_styles.css */
 
+:root {
+    --bg-color: #1e1e1e; /* Very dark gray, almost black */
+    --card-bg-color: #2d2d30; /* Darker gray for cards */
+    --text-color: #d4d4d4; /* Light gray for text */
+    --text-secondary-color: #888888; /* Muted gray for less important text */
+    --accent-color: #00aeff; /* A vibrant blue for accents */
+    --accent-hover-color: #007bff; /* Darker blue for hover */
+    --danger-color: #dc3545; /* Red for delete/warning */
+    --danger-hover-color: #c82333;
+    --success-color: #28a745; /* Green for success like 'copied' */
+    --border-color: #444444; /* Subtle border color */
+    --font-heading: 'Atma', cursive;
+    --font-body: 'Open Sans', sans-serif;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --card-hover-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+    --border-radius: 6px;
+}
+
+/* --- Base Styles --- */
 body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    line-height: 1.6;
     margin: 0;
-    padding: 0;
-    font-family: "Atma", system-ui;
-    font-weight: 500;
-    font-size: 150%;
-    font-style: normal;
-    color: black;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-}
-html {
-    scroll-behavior: smooth;
-}
-.container {
-    overflow-y: auto; 
-    scrollbar-width: none;
-    -ms-overflow-style: none; 
-    background: powderblue;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    padding: 15px;
-    margin-top: 2%;
-    border: 5px double whitesmoke;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 1200px;
-    height: auto; 
-    box-sizing: border-box;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-.container::-webkit-scrollbar {
-    display: none; 
+    padding-top: 20px; /* Add some space at the top */
+    padding-bottom: 20px; /* Add some space at the bottom */
 }
 
+.main-container {
+    max-width: 900px; /* Control max width for better readability on large screens */
+    margin: 0 auto;
+    padding: 15px;
+}
+
+/* --- Typography --- */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    color: var(--accent-color);
+    margin-top: 0;
+}
+
+.page-header {
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+}
+
+.page-header h1 {
+    font-size: 2.8em; /* Make heading prominent */
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+    color: var(--accent-hover-color);
+    text-decoration: underline;
+}
+
+/* --- Bookmark Cards --- */
 .content {
-    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 20px; 
-    max-height: 70vh; 
-    overflow-y: auto; 
-    scrollbar-width: none; 
-    -ms-overflow-style: none; 
-}
-.content::-webkit-scrollbar {
-    display: none; 
+    gap: 20px; /* Space between cards */
 }
 
-.row {
-    background-color: white;
-    border: 5px double #ccc;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    padding: 15px;
-    gap: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
-    margin-left: 5%;
-    width: 90%;
-    flex-shrink: 0; 
-    min-height: 100px; 
-}
-.col {
+.bookmark-card {
+    background-color: var(--card-bg-color);
+    border-radius: var(--border-radius);
+    padding: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: var(--card-shadow);
+    transition: box-shadow 0.3s ease-in-out, transform 0.2s ease-in-out;
+    border: 1px solid var(--border-color); /* Subtle border */
 }
-.col a {
-    color: black;
-    text-decoration: none;
-    font-size: 150%;
-    padding-left: 30px;
-    word-break: break-word;
+
+.bookmark-card:hover {
+    box-shadow: var(--card-hover-shadow);
+    transform: translateY(-3px); /* Slight lift on hover */
 }
-.col a.name {
-    font-weight: 700;
-    font-size: 150%;
+
+.bookmark-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Space between link name and URL */
+    flex-grow: 1; /* Allow info to take up available space */
+    margin-right: 15px; /* Space before action buttons */
+    overflow: hidden; /* Prevent long URLs from breaking layout */
 }
-.btn-copy {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    top: 2px;
-    padding: 6px 10px;
-    border-radius: 5px;
+
+.bookmark-name {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--text-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis for very long names */
+}
+
+.bookmark-name:hover {
+    color: var(--accent-color);
+}
+
+.bookmark-url {
+    font-size: 0.9em;
+    color: var(--text-secondary-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Add ellipsis for very long URLs */
+}
+.bookmark-url:hover {
+    color: var(--accent-color);
+}
+
+
+/* --- Bookmark Actions --- */
+.bookmark-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between buttons */
+}
+
+.delete-form {
+    margin: 0; /* Reset form margin */
+}
+
+/* --- Buttons --- */
+.btn-delete, .btn-copy {
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary-color);
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    right: 10px;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px; /* Space between icon and text for copy button */
 }
-.delete-1{
-    position: absolute;
-    left: 92%;
-    top: 3px;
-    padding: 5px 10px;
+
+.btn-delete svg, .btn-copy svg {
+    /* fill: currentColor; Ensure SVGs inherit color - you already have this in HTML, good! */
+    transition: fill 0.2s ease;
 }
+
+.btn-delete:hover {
+    background-color: rgba(220, 53, 69, 0.1); /* Transparent red */
+    border-color: var(--danger-color);
+    color: var(--danger-color);
+}
+.btn-delete:hover svg {
+    fill: var(--danger-color);
+}
+
+
 .btn-copy:hover {
-    background-color: #45a049;
+    background-color: rgba(0, 174, 255, 0.1); /* Transparent accent */
+    border-color: var(--accent-color);
+    color: var(--accent-color);
 }
-form {
-    margin-top: 20px;
+.btn-copy:hover svg {
+    fill: var(--accent-color);
+}
+.btn-copy span {
+    transition: color 0.2s ease;
+}
+
+/* Copied feedback style */
+.copied-feedback-text {
+    color: var(--success-color) !important; /* Use !important to override inline style or ensure precedence */
+    font-weight: bold;
+}
+
+
+/* --- No Data Message --- */
+.no-data-container {
     text-align: center;
+    padding: 40px 20px;
+    background-color: var(--card-bg-color);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary-color);
 }
-h3.data {
-    text-align: center;
-    font-family: "Atma", system-ui;
+
+.no-data-container svg {
+    color: var(--text-secondary-color); /* Or var(--accent-color) if you prefer */
+    margin-bottom: 20px;
 }
+
+.no-data-container .data-message {
+    font-family: var(--font-heading);
+    color: var(--text-color); /* Slightly more prominent than the paragraph */
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.no-data-container p {
+    font-size: 1.1em;
+}
+
+/* --- Add Button --- */
+.add-button-container {
+    text-align: center; /* Center the form/button */
+    margin-top: 30px;
+    padding: 20px 0;
+    border-top: 1px solid var(--border-color);
+}
+
 #add-button {
-    width: 40%;
-    height: 120%;
-    border: solid;
-    border-width: 2px;
-    color: black;
-    font-size: 25px;
-    border-radius: 10px;
+    background-color: var(--accent-color);
+    color: var(--bg-color); /* Dark text on light button for contrast */
+    border: none;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    font-family: var(--font-body);
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 5px rgba(0, 174, 255, 0.3);
+    transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, transform 0.1s ease;
 }
 
+#add-button:hover {
+    background-color: var(--accent-hover-color);
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
+    transform: translateY(-1px);
+}
 
+/* --- Bootstrap Overrides (if necessary, often for btn focus outline) --- */
+.btn:focus, .btn:active:focus, .btn.active:focus,
+.btn.focus, .btn:active.focus, .btn.active.focus,
+input[type="submit"]:focus {
+    outline: 2px solid var(--accent-color); /* Custom focus outline */
+    outline-offset: 2px;
+    box-shadow: none; /* Remove Bootstrap's default shadow on focus */
+}
+
+/* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
-    body {
-        font-size: 120%; 
+    .page-header h1 {
+        font-size: 2.2em;
+    }
+
+    .bookmark-card {
         flex-direction: column;
-        padding: 10px;
+        align-items: flex-start; /* Align items to the start when stacked */
+        gap: 15px; /* Space between info and actions when stacked */
     }
-    .container {
-        width: 95%; 
-        padding: 10px;
+
+    .bookmark-info {
+        margin-right: 0; /* No right margin when stacked */
+        width: 100%; /* Take full width */
     }
-    .content {
-        max-height: 50vh; 
+
+    .bookmark-actions {
+        width: 100%;
+        justify-content: flex-end; /* Align buttons to the right */
     }
-    .row {
-        margin-left: 0; 
-        width: 100%; 
+
+    .btn-copy span {
+        /* Optionally hide text on small screens if space is tight */
+        /* display: none; */
     }
-    #add-button {
-        width: 80%; 
-        font-size: 20px;
-    }
-    .col a {
-        font-size: 120%; 
+    .btn-copy {
+        /* Adjust padding if text is hidden */
+        /* padding: 8px; */
     }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
-    body {
-        font-size: 130%; 
+@media (max-width: 480px) {
+    .page-header h1 {
+        font-size: 1.8em;
     }
-    .container {
-        width: 85%;
+    .bookmark-name {
+        font-size: 1.1em;
     }
-    .content {
-        max-height: 60vh;
+    .bookmark-url {
+        font-size: 0.8em;
     }
-    #add-button {
-        width: 60%;
-        font-size: 22px;
-    }
-}
-
-
-@media (min-width: 1025px) {
-    body {
-        font-size: 150%; 
-    }
-    .container {
-        width: 80%;
-    }
-    .content {
-        max-height: 70vh;
+    .btn-delete, .btn-copy {
+        padding: 6px 10px;
+        font-size: 0.9em;
     }
     #add-button {
-        width: 40%;
-        font-size: 25px;
+        font-size: 1em;
+        padding: 10px 20px;
     }
 }
