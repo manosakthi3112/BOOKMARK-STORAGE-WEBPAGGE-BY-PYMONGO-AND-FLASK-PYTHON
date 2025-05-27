@@ -1,39 +1,69 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Atma:wght@300;400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>BOOKMARK STORAGE </title>
-        <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" type="image/x-icon">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Secure Access - Bookmark Hub</title> <!-- More engaging title -->
+    <meta name="description" content="User authentication for Bookmark Hub">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" type="image/x-icon">
 
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Fonts: Inter is a very clean and modern UI font. Atma for brand heading if distinct. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Atma:wght@600&display=swap" rel="stylesheet">
 
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    </head>
-    <body>
-        <div class="tot_search">
-            <center>
-            <form action="/check" method="post">
-                <label for="fname" class="yt">USER NAME</label><br>
-                <input type="text" id="fname" name="fname" class="search"><br>
-                <center>
-                <input type="submit" value="Submit" class="submit">
-                </center>
-            </form>
-            </center>
+    <!-- Link to your new custom_style.css -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body class="auth-page-body-v2"> <!-- New body class for this version -->
+
+    <div class="auth-container-v2">
+        <div class="auth-brand-header-v2">
+            <!-- You can place a logo here. Example: -->
+            <!-- <img src="{{ url_for('static', filename='img/logo_mark.svg') }}" alt="Brand Logo" class="auth-logo-mark-v2"> -->
+            <h1>Welcome Back</h1>
+            <p>Sign in to access your curated bookmarks.</p>
         </div>
-        {% if result %}
-        <h2>{{result}}</h2>
-        {% endif %}
 
+        <div class="auth-form-card-v2">
+            <form action="/check" method="post" id="authForm">
+                <div class="form-group-v2">
+                    <label for="fname" class="form-label-v2">Username</label>
+                    <div class="input-wrapper-v2">
+                        <!-- Optional: Icon (e.g., Font Awesome or SVG) -->
+                        <!-- <i class="input-icon user-icon"></i> -->
+                        <input type="text" id="fname" name="fname" class="form-input-v2" placeholder="Enter your username" required>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn-v2">
+                    <span>Sign In</span>
+                    <!-- Optional: Arrow icon for button -->
+                    <!-- <i class="btn-icon arrow-right-icon"></i> -->
+                </button>
+            </form>
 
-    </body>
+            {% if result %}
+            <div class="auth-message-box-v2
+                {% if result and ('successful' in result|lower or 'welcome' in result|lower) %}
+                    success
+                {% elif result and ('invalid' in result|lower or 'error' in result|lower or 'not found' in result|lower or 'incorrect' in result|lower) %}
+                    error
+                {% endif %}
+            ">
+                <!-- Optional: Icon based on type -->
+                <!-- <i class="message-icon"></i> -->
+                <span>{{ result }}</span>
+            </div>
+            {% endif %}
+        </div>
+
+        <footer class="auth-footer-v2">
+            <p>© <span id="currentYear"></span> Bookmark Hub. Elevate Your Browsing.</p>
+        </footer>
+    </div>
+<script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+</body>
 </html>
