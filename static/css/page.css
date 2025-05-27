@@ -1,94 +1,408 @@
+/* static/css/custom_style.css */
 
-html, body {
-    font-family: "Atma", system-ui;
-    font-weight: 700;
-    font-size: 110%;
-    font-style: normal;
-    color: black;
-    background-color: black;
-    height: 100%;
+/* ... (Keep all existing :root variables and other V4 styles NOT defined below) ... */
+
+:root {
+    /* --- CORE V4 VARS (Assume these exist or are defined elsewhere) --- */
+    /* Example:
+    --space-unit: 8px;
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --dev-font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --dev-font-mono: 'Fira Code', 'JetBrains Mono', 'SFMono-Regular', Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    */
+
+    /* --- REFINED & NEW V4 DEVELOPER-FOCUSED THEME VARIABLES --- */
+    --dev-color-bg: #1a1d24; /* Deep, dark background */
+    --dev-color-card-bg: #23272f; /* Slightly lighter card background */
+    --dev-color-input-bg: #282c34; /* Input background for subtle depth */
+    --dev-color-input-bg-focus: #1e2128; /* Darker input background on focus */
+
+    --dev-color-border: #383f4c; /* Softer, muted border */
+    --dev-color-border-focus: var(--dev-color-primary-accent);
+    --dev-color-border-hover: #505866; /* Border color on hover for inputs */
+
+    --dev-color-text-primary: #e0e0e0; /* Light text for contrast */
+    --dev-color-text-secondary: #9ba3b0; /* Muted secondary text */
+    --dev-color-text-placeholder: #6c757d; /* Placeholder text */
+
+    --dev-color-primary-accent: #00aeff; /* Vibrant accent blue */
+    --dev-color-primary-accent-dark: #008cdd; /* Darker accent for hover/active */
+    --dev-color-primary-accent-light-translucent: rgba(0, 174, 255, 0.1); /* For subtle highlights */
+    --dev-color-primary-accent-medium-translucent: rgba(0, 174, 255, 0.3); /* For focus glows */
+
+    --dev-color-tag-bg: var(--dev-color-primary-accent-light-translucent);
+    --dev-color-tag-text: var(--dev-color-primary-accent);
+
+    --dev-card-shadow: 0 12px 28px -6px rgba(0,0,0,0.2), 0 6px 12px -6px rgba(0,0,0,0.15); /* Softer, more layered shadow */
+    --dev-focus-shadow: 0 0 0 3px var(--dev-color-primary-accent-medium-translucent); /* Prominent focus glow */
+    --dev-button-glow-shadow: 0 2px 4px rgba(0, 174, 255, 0.2);
+    --dev-button-glow-shadow-hover: 0 4px 8px rgba(0, 174, 255, 0.3);
+
+    /* Transitions */
+    --transition-duration-short: 0.15s;
+    --transition-duration-medium: 0.25s;
+    --transition-duration-long: 0.4s;
+    --transition-timing-function: ease-in-out;
+
+    /* Developer-focused Input/Button Padding */
+    /* MODIFIED: Increased padding for input fields */
+    --dev-input-padding-vertical: calc(var(--space-unit) * 2);    /* Was 1.5 (e.g., 16px if space-unit is 8px) */
+    --dev-input-padding-horizontal: calc(var(--space-unit) * 2.25); /* Was 1.75 (e.g., 18px if space-unit is 8px) */
+    /* MODIFIED: Increased button vertical padding to match input's feel */
+    --dev-button-padding-vertical: calc(var(--space-unit) * 2);    /* Was 1.5 */
+    --dev-button-padding-horizontal: calc(var(--space-unit) * 2.5); /* 20px, kept as is, or adjust if needed */
+}
+
+/* --- V4 ADD BOOKMARK PAGE STYLES --- */
+body.dev-theme-page.add-bookmark-page-v4 {
+    font-family: var(--dev-font-sans, sans-serif); /* Fallback added */
+    background-color: var(--dev-color-bg);
+    /* Subtle radial gradient for a hint of depth */
+    background-image: radial-gradient(circle at center, rgba(255,255,255,0.02) 0%, transparent 60%);
+    color: var(--dev-color-text-primary);
+    line-height: 1.6;
     margin: 0;
-}
-
-.container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    height: 100%;
-    text-align: center;
-}
-
-
-form {
-    background-color: gray;
-    padding: 45px;
-    border-style: double;
-    border-color: whitesmoke;
-    border-width: 5px;
-    width: 50%;
-    height: auto; 
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-
-.search {
-    width: 100%;
-    padding: 5px;
-    margin: 10px 0;
-    border: solid;
-    border-width: 3px;
+    justify-content: center;
+    min-height: 100vh;
+    padding: calc(var(--space-unit) * 3);
     box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
+.dev-form-container-v4 {
+    width: 100%;
+    max-width: 520px;
+    background-color: var(--dev-color-card-bg);
+    border-radius: var(--border-radius-lg); /* Slightly larger radius for a softer look */
+    box-shadow: var(--dev-card-shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--dev-color-border); /* Subtle border for definition */
+}
 
-#add-button {
-    width: 50%;
-    height: auto;
+/* --- DEV FORM HEADER V4 --- */
+.dev-form-header-v4 {
+    padding: calc(var(--space-unit) * 2.5) calc(var(--space-unit) * 3);
+    border-bottom: 1px solid var(--dev-color-border);
+    text-align: left;
     position: relative;
-    border: solid;
-    border-width: 3px;
-    border-color: black;
-    font-size: 120%;
-    top: 10px;
-    padding: 15px;
+    flex-shrink: 0;
 }
 
-@media (max-width: 600px) {
-    form {
-        width: 90%; 
-        padding: 30px; 
-    }
-    #add-button {
-        width: 80%;
-        font-size: 100%; 
-    }
-    .search {
-        font-size: 100%;
-    }
+.dev-form-header-v4 .header-line-art {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--dev-color-primary-accent), var(--dev-color-primary-accent-dark));
+    /* Animation for the line art */
+    height: 0;
+    animation: extend-line-art var(--transition-duration-long) var(--transition-timing-function) 0.3s forwards;
+}
+
+@keyframes extend-line-art {
+    to { height: 100%; }
+}
+
+.dev-form-header-v4 h1 {
+    font-family: var(--dev-font-sans, sans-serif);
+    font-size: 1.5em; /* 24px */
+    font-weight: 600;
+    color: var(--dev-color-text-primary);
+    margin: 0 0 calc(var(--space-unit) * 0.5) 0;
+    display: flex;
+    align-items: baseline;
+}
+
+.dev-form-header-v4 h1 .prompt-char {
+    color: var(--dev-color-primary-accent);
+    margin-right: calc(var(--space-unit) * 0.75);
+    font-weight: 700;
+    line-height: 1;
+    text-shadow: 0 0 8px var(--dev-color-primary-accent-medium-translucent);
+    /* Subtle pulse animation for the prompt character */
+    animation: pulse-prompt 2.5s infinite var(--transition-timing-function);
+}
+
+@keyframes pulse-prompt {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+.dev-form-header-v4 .subtitle-v4 {
+    font-family: var(--dev-font-mono, monospace); /* Fallback added */
+    font-size: 0.875em;
+    color: var(--dev-color-text-secondary);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* --- DEV FORM MAIN V4 (Form Area) --- */
+.dev-form-main-v4 {
+    padding: calc(var(--space-unit) * 3);
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+/* Custom scrollbar for WebKit browsers */
+.dev-form-main-v4::-webkit-scrollbar {
+    width: 8px;
+}
+.dev-form-main-v4::-webkit-scrollbar-track {
+    background: transparent; /* Or var(--dev-color-card-bg) if preferred */
+}
+.dev-form-main-v4::-webkit-scrollbar-thumb {
+    background-color: var(--dev-color-border);
+    border-radius: var(--border-radius-sm);
+    border: 2px solid var(--dev-color-card-bg); /* Creates padding effect */
+}
+.dev-form-main-v4::-webkit-scrollbar-thumb:hover {
+    background-color: var(--dev-color-text-secondary);
+}
+
+.form-row-v4 {
+    margin-bottom: calc(var(--space-unit) * 2.5);
+    position: relative; /* For potential absolute positioning of error messages, etc. */
+}
+
+.form-label-v4 {
+    display: flex;
+    align-items: center;
+    font-size: 0.8125em;
+    font-weight: 500;
+    color: var(--dev-color-text-secondary);
+    margin-bottom: calc(var(--space-unit) * 0.75);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color var(--transition-duration-medium) var(--transition-timing-function);
+}
+
+/* Enhance label when its associated input (within the same row) is focused */
+.form-row-v4:focus-within .form-label-v4 {
+    color: var(--dev-color-primary-accent);
+}
+
+.form-label-v4 .label-tag {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--dev-color-tag-bg);
+    color: var(--dev-color-tag-text);
+    font-family: var(--dev-font-mono, monospace);
+    font-size: 0.9em;
+    padding: 3px 7px;
+    line-height: 1.2;
+    border-radius: var(--border-radius-sm);
+    margin-right: calc(var(--space-unit) * 1.25);
+    font-weight: 600;
+    transition: background-color var(--transition-duration-medium) var(--transition-timing-function),
+                color var(--transition-duration-medium) var(--transition-timing-function),
+                transform var(--transition-duration-short) var(--transition-timing-function);
+}
+
+.form-row-v4:focus-within .form-label-v4 .label-tag {
+    background-color: var(--dev-color-primary-accent);
+    color: var(--dev-color-card-bg); /* High contrast for tag text */
+    transform: translateY(-1px) scale(1.02); /* Subtle lift and scale */
+}
+
+.form-input-v4 {
+    width: 100%;
+    padding: var(--dev-input-padding-vertical) var(--dev-input-padding-horizontal);
+    border: 1px solid var(--dev-color-border);
+    border-radius: var(--border-radius-sm);
+    font-family: var(--dev-font-mono, monospace);
+    font-variant-ligatures: common-ligatures; /* Enable ligatures for mono fonts like Fira Code */
+    font-size: 0.9375em;
+    line-height: 1.5;
+    color: var(--dev-color-text-primary);
+    background-color: var(--dev-color-input-bg);
+    box-sizing: border-box;
+    transition: border-color var(--transition-duration-medium) var(--transition-timing-function),
+                box-shadow var(--transition-duration-medium) var(--transition-timing-function),
+                background-color var(--transition-duration-medium) var(--transition-timing-function);
+    appearance: none; /* Reset default browser styling */
+}
+
+.form-input-v4::placeholder {
+    color: var(--dev-color-text-placeholder);
+    font-style: italic;
+    opacity: 0.8;
+    transition: opacity var(--transition-duration-medium) var(--transition-timing-function);
+}
+
+.form-input-v4:hover {
+    border-color: var(--dev-color-border-hover);
+}
+
+.form-input-v4:focus {
+    outline: none;
+    border-color: var(--dev-color-border-focus);
+    box-shadow: var(--dev-focus-shadow);
+    background-color: var(--dev-color-input-bg-focus);
+}
+
+.form-input-v4:focus::placeholder {
+    opacity: 0; /* Hide placeholder smoothly on focus */
+}
+
+/* --- FORM ACTIONS V4 --- */
+.form-actions-v4 {
+    margin-top: calc(var(--space-unit) * 3.5);
+}
+
+.submit-btn-dev-v4 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: var(--dev-button-padding-vertical) var(--dev-button-padding-horizontal);
+    background: linear-gradient(95deg, var(--dev-color-primary-accent) 0%, var(--dev-color-primary-accent-dark) 100%);
+    color: #ffffff;
+    border: none;
+    font-size: 0.9375em;
+    line-height: 1.5;
+    font-family: var(--dev-font-sans, sans-serif);
+    font-weight: 600;
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    text-align: left;
+    position: relative; /* For pseudo-elements like shine */
+    overflow: hidden; /* To contain the shine */
+    box-shadow: var(--dev-button-glow-shadow);
+    transition: transform var(--transition-duration-short) var(--transition-timing-function),
+                box-shadow var(--transition-duration-medium) var(--transition-timing-function),
+                background-position var(--transition-duration-long) var(--transition-timing-function); /* For gradient shift */
+    background-size: 200% auto; /* For gradient animation */
+    background-position: 0% center; /* Initial position */
+}
+
+/* Shine effect on button */
+.submit-btn-dev-v4::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; /* Start off-screen */
+    width: 75%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transition: left var(--transition-duration-long) cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother timing */
+    opacity: 0; /* Start invisible */
+}
+
+.submit-btn-dev-v4 .btn-text {
+    font-family: var(--dev-font-mono, monospace);
+    font-variant-ligatures: common-ligatures;
+    flex-grow: 1;
+    position: relative; /* Ensure text is above shine */
+    z-index: 1;
+}
+
+.submit-btn-dev-v4 .btn-icon-dev {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-left: var(--space-unit);
+    flex-shrink: 0;
+    transition: transform var(--transition-duration-medium) var(--transition-timing-function);
+    position: relative; /* Ensure icon is above shine */
+    z-index: 1;
+}
+
+.submit-btn-dev-v4:hover {
+    /* background-color: var(--dev-color-primary-accent-dark); Removed, gradient handles it */
+    background-position: 100% center; /* Shift gradient on hover */
+    box-shadow: var(--dev-button-glow-shadow-hover);
+}
+
+.submit-btn-dev-v4:hover::before {
+    left: 125%; /* Move shine across */
+    opacity: 1; /* Make shine visible */
+}
+
+.submit-btn-dev-v4:hover .btn-icon-dev {
+    transform: translateX(4px) scale(1.05); /* More dynamic icon movement */
+}
+
+.submit-btn-dev-v4:active {
+    transform: scale(0.97); /* Slightly more pronounced active state */
+    box-shadow: 0 1px 2px rgba(0, 174, 255, 0.15);
+}
+
+.submit-btn-dev-v4:focus {
+    outline: none;
+    /* Combine focus shadow with a subtle glow from the button itself */
+    box-shadow: var(--dev-focus-shadow), 0 0 10px var(--dev-color-primary-accent-medium-translucent);
+}
+.submit-btn-dev-v4:focus-visible { /* Modern way for keyboard focus styling */
+    outline: none;
+    box-shadow: var(--dev-focus-shadow), 0 0 10px var(--dev-color-primary-accent-medium-translucent);
 }
 
 
-@media (min-width: 601px) and (max-width: 1024px) {
-    form {
-        width: 70%; 
-        padding: 40px;
-    }
-    #add-button {
-        width: 60%;
-        font-size: 110%; 
-    }
-    .search {
-        font-size: 110%;
-    }
+/* --- DEV FORM FOOTER V4 (Back Link) --- */
+.dev-form-footer-v4 {
+    padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 3);
+    border-top: 1px solid var(--dev-color-border);
+    text-align: left;
+    flex-shrink: 0;
 }
 
-@media (min-width: 1025px) {
-    form {
-        width: 50%;
+.back-link-dev-v4 {
+    font-family: var(--dev-font-mono, monospace);
+    font-size: 0.875em;
+    color: var(--dev-color-text-secondary);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    padding: calc(var(--space-unit) * 0.5) 0;
+    transition: color var(--transition-duration-medium) var(--transition-timing-function);
+}
+
+.back-link-dev-v4 .icon-dev {
+    color: var(--dev-color-primary-accent);
+    margin-right: calc(var(--space-unit) * 0.75);
+    font-weight: bold;
+    font-size: 1.1em;
+    line-height: 1;
+    transition: transform var(--transition-duration-medium) var(--transition-timing-function),
+                color var(--transition-duration-medium) var(--transition-timing-function);
+}
+
+.back-link-dev-v4:hover {
+    color: var(--dev-color-primary-accent);
+}
+
+.back-link-dev-v4:hover .icon-dev {
+    transform: translateX(-3px) rotate(-5deg); /* Slight tilt for character */
+}
+
+
+/* --- RESPONSIVENESS V4 --- */
+@media (max-width: 560px) {
+    body.dev-theme-page.add-bookmark-page-v4 {
+        align-items: flex-start; /* Allow content to start from top on smaller screens */
+        padding: calc(var(--space-unit) * 2); /* Reduced padding for body */
     }
-    #add-button {
-        width: 50%;
-        font-size: 120%;
+    .dev-form-container-v4 {
+        border-radius: var(--border-radius-md); /* Slightly smaller radius on mobile */
+    }
+    .dev-form-header-v4, .dev-form-main-v4, .dev-form-footer-v4 {
+        padding-left: calc(var(--space-unit) * 2); /* Reduced horizontal padding inside card */
+        padding-right: calc(var(--space-unit) * 2);
+    }
+    .dev-form-header-v4 h1 {
+        font-size: 1.375em; /* Slightly smaller h1 */
+    }
+    .dev-form-header-v4 h1 .prompt-char {
+        margin-right: var(--space-unit);
+    }
+    .form-label-v4 {
+        /* Optional: Stack label tag if needed on very small screens or long tags */
+        /* flex-wrap: wrap; */ /* This could be useful if label text + tag is too wide */
     }
 }
